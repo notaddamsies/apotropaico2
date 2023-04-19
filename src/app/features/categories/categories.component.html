@@ -1,1 +1,32 @@
-<p>categories works!</p>
+<app-category-form [active]="categoryStore.active" (resetActive)="resetActive()" (save)="save($event)"></app-category-form>
+<table class="table table-striped w-50 p-3 position-relative top-0 start-50 translate-middle-x mt-3">
+    <thead>
+        <tr>
+            <th>
+                <h3>ID</h3>
+            </th>
+            <th>
+                <h3>Category</h3>
+            </th>
+            <th>
+                <h3>Available Tags</h3>
+            </th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categoryStore.categories, index as i">
+            <td>
+                {{i + 1}}
+            </td>
+            <td>
+                {{category.name}}
+            </td>
+            <td>
+                {{category.tags}}
+            </td>
+            <td><button class="btn btn-light" (click)="setActive(category)">Update</button></td>
+            <td><button class="btn btn-danger" (click)="delete(category)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

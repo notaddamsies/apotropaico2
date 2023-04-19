@@ -1,1 +1,17 @@
-<p>posts works!</p>
+<app-post-form [category]="categoryStore.categories" [active]="postStore.active" (resetActive)="resetActive()" (save)="save($event)"></app-post-form>
+<div class="w-50 p-3 position-relative top-0 start-50 translate-middle-x mt-1">
+    <div class="mt-5" *ngFor="let post of postStore.posts, index as i">
+        <h1>{{post.title}}</h1>
+        <span>by {{post.author}}</span>
+        <div class="shadow-sm px-2">
+            <hr>
+            {{post.body}}
+            <hr>
+        </div>
+        <div>
+            {{post.category.name}} | {{post.category.tags}}
+        </div>
+        <button class="btn btn-light" (click)="setActive(post)">Edit post</button>
+        <button class="btn btn-danger" (click)="delete(post)">Delete</button>
+    </div>
+</div>
